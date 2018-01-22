@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @sit.number %>
+</p>
+
+<p>
+  <strong>Occupied:</strong>
+  <%= @sit.occupied %>
+</p>
+
+<p>
+  <strong>Bus:</strong>
+  <%= @sit.bus %>
+</p>
+
+<%= link_to 'Edit', edit_sit_path(@sit) %> |
+<%= link_to 'Back', sits_path %>

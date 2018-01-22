@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  transporter: one
+  description: MyText
+
+two:
+  transporter: two
+  description: MyText

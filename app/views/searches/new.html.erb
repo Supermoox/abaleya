@@ -1,0 +1,20 @@
+<%= form_for @search do |f| %>
+
+	  <div class="field">
+      <%= f.label :from_id %>
+      <%= f.collection_select :from_id, From.order(:name), :id, :name, :prompt => "Select City" %>
+	  </div>
+		<div class="field">
+      <%= f.label :stop_id %>
+      <%= f.collection_select :stop_id, To.order(:name), :id, :name, :prompt => "Select City" %>
+	  </div>
+		<div class="field">
+      <%= f.label :departure %>
+      <%= f.date_select :departure %>
+	  </div>
+
+	  <div class="action">
+	  <%= f.submit  "Search" %>
+	  </div>
+
+<% end %>

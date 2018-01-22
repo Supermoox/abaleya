@@ -1,0 +1,44 @@
+<p style="color:#2E8B57;"> Payment accepted!</p>
+
+
+<section id="content-receipt" class="clearfix">
+      <div id="receipt-container">
+        <div class="dotmatrix left"></div>
+        <div id="receipt-content">
+          <h4 id="receipt-title">Thank You For Your Purchase!</h4>
+          <div id="receipt-details" class="row clearfix">
+            <div class="col-sm-12">
+            	<h5>
+	            	<span> We have sent your receipt to  </span>
+	            	<span> <%= @purchase.email %></span>
+            	</h5>
+         
+            	<p>
+            		<%= @purchase.customer_id%>
+            	</p>
+             <p> 
+             		K<%= @seat.journey.price %>             		
+             	</p>
+             	<p> 
+             		<%= @seat.seat_number %>             		
+             	</p>
+             	<p> 
+             		<%= @purchase.email %>             		
+             	</p>
+          
+            </div>
+          </div>
+
+          <a href="https://s3-ap-northeast-1.amazonaws.com/rails-seloselo-bucket/thankyou.png"><button type="button" class="btn btn-success btn-xs">DOWNLOAD</button></a>
+          
+          <footer id="receipt-footer">
+            <small>Wish you a safe journey!</small>
+          </footer>
+        </div>
+        <div class="dotmatrix right"></div>
+      </div>
+      <div id="receipt-shadow"></div>
+ </section>
+
+
+<h3  style="color:#2E8B57;"> <%= link_to "Countinue shopping!", root_path %> </h3>

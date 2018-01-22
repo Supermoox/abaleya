@@ -1,0 +1,22 @@
+
+
+<div class="panel panel-default">
+  <% unless @seats.blank? %>     
+	 <div class="row">
+	 		<% @seats.each do |sit| %>
+	 			<% if (sit.seat == 0)  %>
+		 			<div class="col-md-1 blank">
+		 			</div>
+		 		
+		 		<% else %>
+						<div class="col-md-1 ">
+		 					<%= sit.seat %>
+		 			  </div>
+	 		<% end %>
+	 		<% end %>
+	 </div>
+	<% end %>
+</div>
+
+<%= link_to 'Edit', edit_bus_path(@bus) %> |
+<%= link_to 'Back', buses_path %>

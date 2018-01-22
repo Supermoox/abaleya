@@ -1,0 +1,68 @@
+<%= form_for @journey do |f| %>
+  <% if journey.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(journey.errors.count, "error") %> prohibited this journey from being saved:</h2>
+
+      <ul>
+      <% journey.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :price %>
+    <%= f.text_field :price, id: :journey_price %>
+  </div>
+  <div class="field">
+    <%= f.label :total_seats %>
+    <%= f.number_field :total_seats %>
+  </div>
+
+  <div class="field">
+    <%= f.label :departure %>
+    <%= f.datetime_select :departure, id: :journey_departure %>
+  </div>
+
+  <div class="field">
+    <%= f.label :arrival %>
+    <%= f.datetime_select :arrival, id: :journey_arrival %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description, id: :journey_description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :from_id %>
+    <%= collection_select(:journey, :from_id, From.all, :id, :name, :prompt => "Select City") %>
+  </div>
+
+  <div class="field">
+    <%= f.label :to_id %>
+    <%= collection_select(:journey, :to_id, To.all, :id, :name, :prompt => "Select City") %>
+  </div>
+  <div class="field">
+      <%= f.label :bus %>
+      <%= collection_select(:journey, :bus_id, Bus.all, :id, :carrier_name, :prompt => "Select Bus") %>
+  </div>
+
+  <div class="form-group seats">
+    <div class="actions">
+     <%= link_to_add_association 'Add A Seat', f, :seats, class: 'btn btn-primary', data: { association_insertion_node: '.seats', association_insertion_method: :append } %>
+    </div>
+    <div class="seat">
+      <%= f.fields_for :seats do |builder| %>
+        <%= render 'seat_fields', f: builder %>
+      <% end %>
+    </div>
+  </div>
+  <p> <%= f.submit %> </p>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

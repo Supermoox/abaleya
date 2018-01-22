@@ -1,0 +1,25 @@
+<div class="nested-fields">
+<table>
+<tbody>
+<tr>
+	<td>
+		<%= link_to_remove_association "remove this seat", f, class: 'btn btn-primary btn-xs' %>
+	</td>
+
+
+
+
+ 	<td>
+	  <div class="form-group">
+        <%= f.label :seat_number %><br>
+        <%= f.number_field :seat_number, :placeholder =>"seat", :required => true, class: "form-control" %>
+    </div>
+ 	</td>
+
+
+</tr>
+	</tbody>
+	</table>
+
+
+</div>

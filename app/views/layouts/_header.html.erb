@@ -1,0 +1,28 @@
+<div class="row header">
+  <div class="col-md-2">
+    <h3 class="logo" > 
+      <span class="zam"><%= link_to 'ZAMBUS', root_path %> </span>
+    </h3>
+  </div>
+
+  <div class="col-md-7 header-menu">
+    
+    <span><i class="fa fa-bars"> </i></span>
+    <span> <%= link_to 'All Services', root_path %></span>
+
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="col-md-3">
+    <ul class="nav navbar-nav top-right">
+      <% if user_signed_in? %>
+        <li> <%= link_to "Account" , edit_user_registration_path %></li>
+        <li> <%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to "Register", new_user_registration_path, class: "active" %></li>
+        <li><%= link_to "Log In ", new_user_session_path, class: "active" %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  price: 9.99
+  departure: 2017-12-29 17:08:32
+  arrival: 2017-12-29 17:08:32
+  description: MyText
+  from: one
+  to: one
+
+two:
+  price: 9.99
+  departure: 2017-12-29 17:08:32
+  arrival: 2017-12-29 17:08:32
+  description: MyText
+  from: two
+  to: two

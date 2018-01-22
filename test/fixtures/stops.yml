@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  price: 9.99
+  arrival: 2017-12-29 18:19:34
+  city: one
+  journey: one
+
+two:
+  price: 9.99
+  arrival: 2017-12-29 18:19:34
+  city: two
+  journey: two
