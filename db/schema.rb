@@ -66,7 +66,6 @@ ActiveRecord::Schema.define(version: 20181112185021) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "seat_id"
-    t.integer "sit_id"
     t.integer "journey_id"
     t.string "uuid"
   end
