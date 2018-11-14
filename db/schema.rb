@@ -10,27 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181112185021) do
+ActiveRecord::Schema.define(version: 20181114204220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "buses", force: :cascade do |t|
-    t.bigint "transporter_id"
-    t.text "description"
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string "namespace"
+    t.text "body"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.string "author_type"
+    t.bigint "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.string "carrier_name"
-    t.string "registration"
-    t.string "make"
-    t.index ["transporter_id"], name: "index_buses_on_transporter_id"
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
   end
 
-  create_table "cities", force: :cascade do |t|
-    t.string "name"
+  create_table "admin_users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_admin_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
   create_table "froms", force: :cascade do |t|
@@ -66,6 +79,7 @@ ActiveRecord::Schema.define(version: 20181112185021) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "seat_id"
+    t.integer "sit_id"
     t.integer "journey_id"
     t.string "uuid"
   end
@@ -89,17 +103,6 @@ ActiveRecord::Schema.define(version: 20181112185021) do
     t.index ["journey_id"], name: "index_seats_on_journey_id"
   end
 
-  create_table "sits", force: :cascade do |t|
-    t.string "number"
-    t.boolean "occupied"
-    t.bigint "bus_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "seat"
-    t.integer "purchase_id"
-    t.index ["bus_id"], name: "index_sits_on_bus_id"
-  end
-
   create_table "tos", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -120,6 +123,7 @@ ActiveRecord::Schema.define(version: 20181112185021) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "transporter"
+    t.boolean "moderator"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -127,5 +131,4 @@ ActiveRecord::Schema.define(version: 20181112185021) do
   add_foreign_key "journeys", "froms"
   add_foreign_key "journeys", "tos"
   add_foreign_key "seats", "journeys"
-  add_foreign_key "sits", "buses"
 end
