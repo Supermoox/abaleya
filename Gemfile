@@ -25,7 +25,10 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem "font-awesome-rails"
 gem 'paperclip', '~> 5.1'
 gem 'bootstrap-datepicker-rails', '~> 1.7', '>= 1.7.1.1'
-
+gem 'will_paginate', '>= 3.1'
+gem "figaro"
+gem 'activeadmin', '~> 1.0'
+gem "font-awesome-rails"
 
 
 group :development, :test do

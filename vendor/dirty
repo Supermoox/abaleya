@@ -1,99 +1,65 @@
-<div class="row">
-  <div class="col-md-2">
-  </div>
-  <div class="col-md-8">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <div class="row bus-show"> 
-          <% unless @journey.bus.blank? %>     
-           <div class="col-sm-6">
-            <div class="row">
-            
-              <span style="font-size: x-large;"><%=  @journey.bus.carrier_name %> </span>              
-              <span><%=  @journey.bus.registration %> </span> 
-                          <h4 >
-              <span><%=  @journey.from.name  %> </span>
-              --->
-              <span><%= @journey.to.name %>  </span>   
-            </h4>             
-             
-              <div class="row bus">
-                <% @journey.bus.sits.order("created_at DESC").each do |sit| %>
-                  <div class="col-md-3">
-                      <% if !sit.occupied %>
-                      <div class="thumbnail">
-                        <%= form_tag charges_path, id:'chargeForm' do %>
-                          <article>
-                            <% if flash[:error].present? %>
-                              <div id="error_explanation">
-                                <p><%= flash[:error] %></p>
-                              </div>
-                            <% end %>
+BUS 
 
-                            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_test_czQ9aIlM57GBGPg75ATMD0SS" data-description="ticket charge" data-amount="K200" data-locale="auto">
-                            </script>
-                              <button id="btn-buy" type="button" class="btn btn-danger btn-lg btn-block"><span class="glyphicon"></span> <%=  sit.number %> </button>
-                          </article>
-                        <% end %>
-                      </div>
-                    
-                    <% else %>
-                      <div class="thumbnail">
-                        <span><%= link_to sit.number , '', class: "btn btn-default btn-success btn-bus" %>     
-                        </span>
-                      </div>
-                    <% end %>
-
-                  </div>
-                <% end %>
-              </div>
-              </div>
-              <div class="row key">
-                <% unless @journey.bus.blank? %>
-                  <div class="col-md-7">
-                    <h5>
-                      <span><%= link_to '' , '', class: "btn btn-default btn-success btn-bus"%> OCCUPIED SIT
-                      </span>
-                    </h5>
-                    <h5><span><%= link_to '' , '', class: "btn btn-default btn-danger btn-bus"%> UNOCCUPIED SIT</span></h5>
-                    </div>
-                    <div class="col-md-5">
-                      <p> To book a sit, click on any of the unoccupied sits</p>
-                  </div>
-                </div>
-                <% end %>
-            <%= link_to 'Edit', edit_journey_path(@journey) %> |
-            <%= link_to 'Back', journeys_path %>
-          </div> 
+    <div class="row">
+      <div class="col-md-6">
+        <div class="wheels"></div>
+      </div>
+      <div class="col-md-6">
+        <div class="wheels"></div>
+      </div>
+    </div>     
+    <div class="row bus">
+      <% @journey.seats.each do |seat| %>
+        <% if (seat.seat_number == 6 || seat.seat_number == 17)  %>
+          <div class="col-md-1 blank">
+          </div>
+          <div class="col-md-1">
+            <span> <%= link_to seat.seat_number, seat,  class: "btn btn-default btn-danger" %></span>
+          </div>
+        <% else%>
+        <% if (seat.seat_number == 23)%>
+            <div class="col-md-1 blank">
+            </div>
+              <div class="col-md-1 blank">
+            </div>
+              <div class="col-md-1 blank">
+            </div>
+              <div class="col-md-1 blank">
+            </div>
+              <div class="col-md-1 blank">
+            </div>
+              <div class="col-md-1 blank">
+            </div>
+              <div class="col-md-1 blank">
+            </div>
+              <div class="col-md-1 blank">
+            </div>
+              <div class="col-md-1 blank">
+            </div>
+              <div class="col-md-1 blank">
+            </div>
+              <div class="col-md-1 blank">
+            </div>
+                   
+        <% end %>
+          <% if seat.purchases.blank? %>  
+            <div class="col-md-1 ">               
+              <span> <%= link_to seat.seat_number, seat,  class: "btn btn-default btn-danger"%></span>
+            </div>
+          <% else %>
+            <div class="col-md-1 ">               
+              <span> <%= link_to seat.seat_number, '',  class: "btn btn-default btn-success"%></span>
+            </div>               
           <% end %>
-
-          <div class="col-sm-6 bus-info">
-            <div class="table-responsive">
-              <p>
-                <strong>Bus Fair: </strong>
-                K<%= @journey.price %>
-              </p>
-              <p>
-                <strong>Departure Time: </strong>
-                <%= @journey.departure %>
-              </p>
-              <p>
-                <strong>Arrival Time: </strong>
-                <%= @journey.arrival %>
-              </p>
-            </div> 
-          </div>  
-        </div>
+        <% end %>
+      <% end %>
+   </div>
+ 
+    <div class="row">
+      <div class="col-md-6">
+        <div class="wheels-bottom"></div>
+      </div>
+      <div class="col-md-6">
+        <div class="wheels-bottom"></div>
       </div>
     </div> 
-  </div>
-  <div class="col-md-2">
-  </div>
-</div>
-
-
-
-
-
-
-

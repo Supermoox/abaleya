@@ -2,34 +2,37 @@ class JourneysController < ApplicationController
   before_action :set_journey, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except:[:index, :show]
 
-  # GET /journeys
-  # GET /journeys.json
+
   def index
-    @journeys = Journey.all.order("departure")
+    @journeys = Journey.all.paginate(page: params[:page], per_page: 10).order("departure DESC")
     @search = Search.new
   end
 
-  # GET /journeys/1
-  # GET /journeys/1.json
+
   def show
-    
+
   end
 
-  # GET /journeys/new
+
   def new
-    @journey = Journey.new
-
-    @buses = Bus.where(user_id: current_user.id)
+   # if current_user.transporter
+      @journey = Journey.new
+   # else
+    #  redirect_to root_path
+   # end
   end
 
-  # GET /journeys/1/edit
+
   def edit
+    unless user_signed_in? && @journey.user == current_user
+      redirect_to root_path
+    end
   end
 
-  # POST /journeys
-  # POST /journeys.json
   def create
-    @journey = Journey.new(journey_params)
+    @journey = current_user.journeys.build(journey_params)
+
+    #@journey = Journey.new(journey_params)
 
     respond_to do |format|
       if @journey.save
@@ -42,8 +45,7 @@ class JourneysController < ApplicationController
     end
   end
 
-  # PATCH/PUT /journeys/1
-  # PATCH/PUT /journeys/1.json
+
   def update
     respond_to do |format|
       if @journey.update(journey_params)
@@ -56,8 +58,7 @@ class JourneysController < ApplicationController
     end
   end
 
-  # DELETE /journeys/1
-  # DELETE /journeys/1.json
+
   def destroy
     @journey.destroy
     respond_to do |format|
@@ -67,12 +68,10 @@ class JourneysController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_journey
       @journey = Journey.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def journey_params
       params.require(:journey).permit(:price, :departure, :arrival, :total_seats, :description, :from_id, :to_id, :bus_id, seats_attributes: [:id, :_destroy, :seat_number, :journey_id])
     end

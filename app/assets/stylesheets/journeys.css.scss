@@ -1,0 +1,79 @@
+// Place all the styles related to the Journeys controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.new-journey{
+	background-color: white;
+	padding-left: 10%;
+	padding-right: 10%;
+	padding-top: 5%;
+	margin-top: 5%;
+	padding-bottom: 5%;
+	border: 1px solid #ccc;
+}
+
+.journey-header{
+	margin-left: 20px;
+}
+
+.journey-header-from{
+	padding-left: 80px;
+}
+.line{
+	background-color: grey;
+	margin-top: 5px;
+	margin-left: -10px;
+}
+.circle-left{
+	height: 12px;
+	width: 12px;
+	border: 2px solid #ccc;
+	border-radius: 50%;
+	background-color: #DAA520;
+}
+
+.circle-right{
+	margin-left: -15px;
+	height: 12px;
+	width: 12px;
+	border: 2px solid #ccc;
+	border-radius: 50%;
+	background-color: #5cb85c;
+}
+
+.price{
+	margin-top:20px;
+}
+.duration{
+	margin-left: 25%;
+	margin-top: 40px;
+	color: grey;
+}
+
+.journey-link{
+	padding-left: 400px;
+}
+.journey-link a{
+	color: white;
+	background-color:#2F4F4F;
+	padding: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+
+	border-radius: 4px;
+}
+.journey-link a:hover{
+	color: white;
+	background-color:green;
+	padding: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	border-radius: 4px;
+}
+#form-header{
+	text-align: center;
+	font-family: initial;
+	margin-bottom: 20px;
+	color: grey;
+}

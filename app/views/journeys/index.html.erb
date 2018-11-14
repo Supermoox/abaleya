@@ -32,63 +32,38 @@
   </div>
 </div>
 
+<div class="panel">
 
-
-<% @journeys.each do |j| %>
-  <div class="panel panel-default">
-  <div class="row">
-    <div class="panel-body">
+  <% @journeys.each do |j| %> 
+    <%= link_to j do  %> 
+    <div class="panel-body home-panel">
       <div class="row schedule">
-        <div class="col-md-6">
-            <span style="font-size: small; color: grey"> Scheduled </span>
-            <span><%= j.departure.strftime('%B %d, %Y') %></span>
-        </div>
-        <div class="col-md-6 journey-link">
-             <h4>
-              <%= link_to 'Select',j %>
-            </h4>
-        </div>
+        <span style="font-size: small; color: grey"> Scheduled </span>
+        <span><%= j.departure.strftime('%B %d, %Y') %></span>
       </div>
-      <div class="row">      
-        <div class="col-md-3 journey-header-from">
-          <div class="table-responsive">
-            <h4 >
-             <span class="location-from">
-                <svg viewBox="0 0 12 12">
-                  <path d="M6 5.7c.4 0 .7-.1.9-.4.3-.3.4-.6.4-.9 0-.4-.1-.7-.4-.9-.2-.3-.5-.4-.9-.4s-.7.1-.9.4c-.3.2-.4.5-.4.9s.1.7.4.9c.2.3.5.4.9.4zm0-5c1 0 1.9.4 2.6 1.1.7.7 1.1 1.6 1.1 2.6 0 .5-.1 1.1-.4 1.8s-.5 1.3-.9 1.9c-.4.5-.7 1.1-1.1 1.6-.4.5-.7.9-.9 1.2l-.4.4c-.1-.1-.2-.3-.4-.5s-.5-.6-.9-1.2c-.4-.5-.8-1-1.1-1.6s-.7-1.1-.9-1.8c-.3-.7-.4-1.3-.4-1.8 0-1 .4-1.9 1.1-2.6S5 .7 6 .7z">
-                 </path>
-                </svg> 
-              </span>
-              <span> <%=  j.from.name  %>  </span>   
-            </h4>  
-            <span>
-              Departure time
+      <div class="row journey-details">      
+        <div class="col-xs-4 details">
+          <h4 >
+           <span class="location-from">
+              <svg viewBox="0 0 12 12">
+                <path d="M6 5.7c.4 0 .7-.1.9-.4.3-.3.4-.6.4-.9 0-.4-.1-.7-.4-.9-.2-.3-.5-.4-.9-.4s-.7.1-.9.4c-.3.2-.4.5-.4.9s.1.7.4.9c.2.3.5.4.9.4zm0-5c1 0 1.9.4 2.6 1.1.7.7 1.1 1.6 1.1 2.6 0 .5-.1 1.1-.4 1.8s-.5 1.3-.9 1.9c-.4.5-.7 1.1-1.1 1.6-.4.5-.7.9-.9 1.2l-.4.4c-.1-.1-.2-.3-.4-.5s-.5-.6-.9-1.2c-.4-.5-.8-1-1.1-1.6s-.7-1.1-.9-1.8c-.3-.7-.4-1.3-.4-1.8 0-1 .4-1.9 1.1-2.6S5 .7 6 .7z">
+               </path>
+              </svg> 
             </span>
-            <span style="font-size: larger;">
-              <%= j.departure.time.strftime(' %H:%M') %>
-            </span>
-          </div>  
+            <span> <%=  j.from.name  %>  </span>   
+          </h4>  
+          <span>
+            Departure time
+          </span>
+          <span style="font-size: larger;">
+            <%= j.departure.time.strftime(' %H:%M') %>
+          </span>
         </div>
-        <div class="col-md-3">
-          <div class="row">
-            <div class="duration">
-              <%= Time.at(j.arrival - j.departure).utc.strftime("%H h %M m") %> 
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-2 ">
-              <div class="circle-left">
-              </div>
-            </div>
-            <div class="col-md-6 line"></div>
-            <div class="col-md-2">
-               <div class="circle-right">
-              </div>
-            </div>
-          </div>
+        <div class="col-xs-1 arrow">
+          <i class="fa fa-long-arrow-right"></i>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-xs-4 details">
               <h4>
                 <span class="location-to">
                   <svg viewBox="0 0 12 12">
@@ -96,7 +71,7 @@
                    </path>
                   </svg> 
                 </span>
-                <span ><%= j.to.name  %>  </span>   
+                <span ><%= j.to.name  %></span>   
               </h4>
      
           <span>
@@ -106,18 +81,15 @@
             <%= j.arrival.time.strftime(' %H:%M') %>
           </span>
         </div> 
-        <div class="col-md-3 ">
-          <div class="col-md-4">
-            <h2>
-              K<%= j.price %>
-            </h2>
-          </div>
+        <div class="col-xs-3 fare">
+          <h4>
+            K<%= j.price %>
+          </h4>
         </div>   
       </div>
     </div>
-  </div>
-  </div> 
-<% end %>
+    <% end %>
+    <hr style="margin:0px;">
+  <% end %>
+</div>
 
-
-<%= link_to 'New Journey', new_journey_path %>

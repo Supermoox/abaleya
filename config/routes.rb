@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :seats
+  resources :seats do
+    member do
+      patch :select
+    end
+  end
   devise_for :users
   resources :cities
   resources :stops
@@ -10,6 +14,7 @@ Rails.application.routes.draw do
   end
   resources :buses 
   resources :transporters
+  resources :my_journeys
   resources :journeys
   resources :tos
   resources :froms

@@ -9,6 +9,7 @@ class SeatsController < ApplicationController
 
   def show
     @empty_seats = @seat.journey.seats.where( occupied: nil)
+    @seats = @seat.journey.seats
     @occupied_seats = @seat.journey.seats.where( occupied: true)
   end
 

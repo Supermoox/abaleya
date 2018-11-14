@@ -19,3 +19,4 @@
 //= require_tree .
 
 $('.datepicker').datepicker();
+$("payment").scrollTop($("payment")[0].scrollHeight);

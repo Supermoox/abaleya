@@ -1,14 +1,33 @@
 <div class="row header">
   <div class="col-md-2">
     <h3 class="logo" > 
-      <span class="zam"><%= link_to 'ZAMBUS', root_path %> </span>
+      <span class="zam"><%= link_to 'ABALEYA', root_path %> </span>
     </h3>
   </div>
 
   <div class="col-md-7 header-menu">
-    
-    <span><i class="fa fa-bars"> </i></span>
-    <span> <%= link_to 'All Services', root_path %></span>
+    <span> 
+      <button class="dropdown-toggle btn-services" data-toggle="dropdown">All Services
+        
+        <span style="color: #FF00FF;"><i class="fa fa-bars"> </i></span>
+        <span class="caret"></span>
+      </button>
+
+      <ul class="dropdown-menu">
+        <div class="row"> 
+          <div class="col-md-6 dropped-area">
+            <hr style="height:2px;border:none;color:#333;background-color: #FF00FF;" />
+            <li><%= link_to "Add A Trip", new_journey_path %></li>
+            <li><%= link_to "My Trips", my_journeys_path %></li>
+          </div>
+          <div class="col-md-6 dropped-area">
+            <hr style="height:2px;border:none;color:#333;background-color: #FF00FF;" />
+            <li><%= link_to "Add A Trip", new_journey_path %></li>
+            <li><%= link_to "My Trips", my_journeys_path %></li>
+          </div>
+        </div>  
+      </ul>
+    </span>
 
   </div>
 

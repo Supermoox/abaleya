@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180122114329) do
+ActiveRecord::Schema.define(version: 20181112185021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20180122114329) do
     t.integer "stop_id"
     t.integer "bus_id"
     t.integer "total_seats"
+    t.integer "user_id"
     t.index ["from_id"], name: "index_journeys_on_from_id"
     t.index ["to_id"], name: "index_journeys_on_to_id"
   end
@@ -85,6 +86,7 @@ ActiveRecord::Schema.define(version: 20180122114329) do
     t.datetime "updated_at", null: false
     t.boolean "occupied"
     t.integer "bus_id"
+    t.boolean "selected"
     t.index ["journey_id"], name: "index_seats_on_journey_id"
   end
 
@@ -97,17 +99,6 @@ ActiveRecord::Schema.define(version: 20180122114329) do
     t.integer "seat"
     t.integer "purchase_id"
     t.index ["bus_id"], name: "index_sits_on_bus_id"
-  end
-
-  create_table "stops", force: :cascade do |t|
-    t.decimal "price"
-    t.datetime "arrival"
-    t.bigint "city_id"
-    t.bigint "journey_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["city_id"], name: "index_stops_on_city_id"
-    t.index ["journey_id"], name: "index_stops_on_journey_id"
   end
 
   create_table "tos", force: :cascade do |t|
@@ -129,6 +120,7 @@ ActiveRecord::Schema.define(version: 20180122114329) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "transporter"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -137,6 +129,4 @@ ActiveRecord::Schema.define(version: 20180122114329) do
   add_foreign_key "journeys", "tos"
   add_foreign_key "seats", "journeys"
   add_foreign_key "sits", "buses"
-  add_foreign_key "stops", "cities"
-  add_foreign_key "stops", "journeys"
 end
