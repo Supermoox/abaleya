@@ -15,11 +15,12 @@ class JourneysController < ApplicationController
 
 
   def new
-   # if current_user.transporter
+    if current_user.moderator
       @journey = Journey.new
-   # else
-    #  redirect_to root_path
-   # end
+    else
+      flash[:notice] = "you need to apply to be able to add trips!"
+      redirect_to root_path
+    end
   end
 
 

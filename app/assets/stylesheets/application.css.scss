@@ -12,6 +12,8 @@
  *
  *= require_tree .
  *= require_self
+ *= stub "active_admin"
+
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
